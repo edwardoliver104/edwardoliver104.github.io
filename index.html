@@ -292,29 +292,6 @@
 </footer>
 
 <script src="/assets/config.js"></script>
-<script>
-(function () {
-  var pop = document.getElementById("exitpop"), shown = false;
-  function seen(){ try { return sessionStorage.getItem("os_pop") === "1"; } catch(e){ return false; } }
-  function show() {
-    if (shown || !pop || seen()) return;
-    shown = true;
-    try { sessionStorage.setItem("os_pop","1"); } catch(e){}
-    pop.classList.add("show"); pop.setAttribute("aria-hidden","false");
-    document.body.style.overflow = "hidden";
-  }
-  function hide() { if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
-  if (!seen()) {
-    setTimeout(show, 15000);
-    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
-    window.addEventListener("scroll", function onScroll() {
-      var sd = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (sd > 0.55) { show(); window.removeEventListener("scroll", onScroll); }
-    }, { passive: true });
-  }
-  document.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) { e.preventDefault(); hide(); } });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hide(); });
-})();
-</script>
+<script src="/assets/popup.js"></script>
 </body>
 </html>

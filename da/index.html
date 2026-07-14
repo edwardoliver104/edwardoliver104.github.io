@@ -6,7 +6,7 @@
 <title>Ozalyn anmeldelse: Svindel eller ægte? ⭐ Ærlig test 2026</title>
 <meta name="description" content="Er Ozalyn svindel eller ægte? ⭐ Vores ærlige test 2026: rigtige erfaringer, indhold, den reelle pris &amp; hvor du køber trygt. Også solgt som Osanix. »">
 <meta name="keywords" content="ozalyn anmeldelse, ozalyn vægttab, ozalyn virker det, ozalyn bluff, ozalyn erfaringer, ozalyn kapsler, ozalyn danmark, ozalyn fakta, ozalyn indhold, ozalyn pris, ozalyn køb, ozalin, rozalyn, osanix">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/da/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -260,7 +260,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Sidste chance</span>
+    <span class="pop-badge">🚨 Sidste chance</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn kapsler">
     <h3>Din rabat på op til −44% er stadig aktiv</h3>
     <p>Sikr dig Ozalyn-kuren med gratis forsendelse og 30 dages pengene-tilbage-garanti — så længe den officielle butiks tilbud varer.</p>
@@ -302,7 +302,8 @@
   }
   function hide() { if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll() {
       var sd = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       if (sd > 0.55) { show(); window.removeEventListener("scroll", onScroll); }

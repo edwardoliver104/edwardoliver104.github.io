@@ -6,7 +6,7 @@
 <title>Ozalyn ervaringen &amp; recensies: Werkt het echt? ⭐ Test 2026</title>
 <meta name="description" content="Ozalyn ervaringen bij afvallen: werken de capsules? ⭐ Onze eerlijke analyse 2026 van resultaten, recensies, bijwerkingen en voor-en-na-beweringen. »">
 <meta name="keywords" content="ozalyn ervaringen, ozalyn recensies, ozalyn capsules ervaringen, ozalyn werkt dat echt, ozalyn pillen, ozalyn bijwerkingen, ozalyn ervaringen voor en na, is ozalyn betrouwbaar, rozalyn ervaringen, ozalin ervaringen, osanix ervaringen">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/nl/ervaringen/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -98,7 +98,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Laatste kans</span>
+    <span class="pop-badge">🚨 Laatste kans</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn capsules">
     <h3>Uw korting van tot −50% is nog actief</h3>
     <p>Pak de Ozalyn-kuur met gratis verzending en de niet-goed-geld-terug-optie van 30 dagen — zolang het aanbod van de officiële webshop loopt.</p>
@@ -125,7 +125,8 @@
   function show(){ if (shown || !pop || seen()) return; shown = true; try { sessionStorage.setItem("os_pop","1"); } catch(e){} pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
   function hide(){ if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll(){ var sd=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight; if (sd>0.55){ show(); window.removeEventListener("scroll", onScroll); } }, { passive: true });
   }
   document.addEventListener("click", function (e){ if (e.target.closest("[data-close]")) { e.preventDefault(); hide(); } });

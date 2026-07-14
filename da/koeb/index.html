@@ -6,7 +6,7 @@
 <title>Hvor køber man Ozalyn: Officiel butik, pris &amp; pakker ⭐ 2026</title>
 <meta name="description" content="Hvor køber man Ozalyn trygt: den officielle butik, den reelle pris, pakker &amp; −44%-tilbuddet. ⭐ Ikke på apoteket eller pålideligt hos Matas — her er hvorfor den officielle butik betyder noget. »">
 <meta name="keywords" content="ozalyn køb, ozalyn pris, ozalyn danmark, ozalyn officiel, ozalyn apotek, ozalyn matas, køb ozalyn, ozalyn kapsler, ozalyn original, osanix køb, ozalin">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/da/koeb/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -114,7 +114,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Sidste chance</span>
+    <span class="pop-badge">🚨 Sidste chance</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn kapsler">
     <h3>Din rabat på op til −44% er stadig aktiv</h3>
     <p>Sikr dig Ozalyn-kuren med gratis forsendelse og 30 dages pengene-tilbage-garanti — så længe den officielle butiks tilbud varer.</p>
@@ -141,7 +141,8 @@
   function show(){ if (shown || !pop || seen()) return; shown = true; try { sessionStorage.setItem("os_pop","1"); } catch(e){} pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
   function hide(){ if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll(){ var sd=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight; if (sd>0.55){ show(); window.removeEventListener("scroll", onScroll); } }, { passive: true });
   }
   document.addEventListener("click", function (e){ if (e.target.closest("[data-close]")) { e.preventDefault(); hide(); } });

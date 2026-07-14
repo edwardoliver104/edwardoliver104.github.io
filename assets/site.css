@@ -140,24 +140,26 @@ ul.check li::before{content:"✓";position:absolute;left:3px;top:9px;color:var(-
 #sticky-cta .cta{padding:12px 18px;font-size:15px}
 @media(min-width:761px){#sticky-cta{display:none}}
 
-/* ---------- exit popup ---------- */
+/* ---------- exit popup (emergency / advertorial style) ---------- */
 .pop{position:fixed;inset:0;z-index:1000;display:none}
 .pop.show{display:block}
-.pop-ov{position:absolute;inset:0;background:rgba(20,35,46,.62);backdrop-filter:blur(3px);animation:fade .25s ease}
+.pop-ov{position:absolute;inset:0;background:rgba(35,8,8,.66);backdrop-filter:blur(5px);animation:fade .25s ease}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.pop-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 30px);max-width:440px;
-  background:var(--pane);border-radius:20px;box-shadow:var(--shadow-lg);padding:26px 26px 24px;text-align:center;animation:rise .3s cubic-bezier(.2,.9,.3,1.2)}
+.pop-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 30px);max-width:444px;
+  background:linear-gradient(162deg,#d23a26,#a11c15);color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:20px;
+  box-shadow:0 30px 80px rgba(120,10,10,.5);padding:24px 24px 22px;text-align:center;animation:rise .3s cubic-bezier(.2,.9,.3,1.2)}
 @keyframes rise{from{opacity:0;transform:translate(-50%,-46%) scale(.96)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-.pop-badge{display:inline-block;background:var(--cta);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;padding:6px 13px;border-radius:20px;margin-bottom:12px}
-.pop img{max-height:120px;width:auto;margin:0 auto 12px}
-.pop h3{font-size:21px;margin:0 0 8px}
-.pop p{color:var(--dim);font-size:15px;margin:0 0 16px}
-.pop .cta{width:100%;font-size:18.5px;padding:17px 24px;animation:ctaPulse 1.7s ease-in-out infinite}
-@keyframes ctaPulse{0%,100%{box-shadow:0 8px 22px rgba(229,67,126,.32);transform:translateZ(0) scale(1)}50%{box-shadow:0 10px 34px rgba(229,67,126,.55);transform:translateZ(0) scale(1.015)}}
-.pop .pop-badge{background:var(--red);animation:badgeBlink 1.2s steps(1) infinite}
-@keyframes badgeBlink{0%,60%{opacity:1}61%,100%{opacity:.72}}
-.pop .skip{display:block;margin:11px auto 0;background:none;border:0;color:var(--faint);font-size:12.5px;cursor:pointer;text-decoration:underline;opacity:.75}
-.pop .skip:hover{opacity:1}
+.pop-badge{display:inline-block;background:#fff;color:#b02617;font-weight:900;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:12px;box-shadow:0 4px 12px rgba(0,0,0,.22)}
+.pop img{max-height:116px;width:auto;margin:0 auto 10px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.28))}
+.pop h3{font-size:22px;line-height:1.2;margin:0 0 8px;color:#fff;font-weight:850}
+.pop p{color:rgba(255,255,255,.92);font-size:15px;margin:0 0 16px}
+.pop .cta{width:100%;font-size:18.5px;padding:17px 24px;background:#fff;color:#c0392b;box-shadow:0 8px 22px rgba(0,0,0,.28);animation:ctaPulse 1.5s ease-in-out infinite}
+.pop .cta:hover{background:#fff;color:#8f1f13;box-shadow:0 12px 30px rgba(0,0,0,.42)}
+@keyframes ctaPulse{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.02)}}
+.pop .pop-badge{animation:badgeBlink 1s steps(1) infinite}
+@keyframes badgeBlink{0%,60%{opacity:1}61%,100%{opacity:.6}}
+.pop .skip{display:block;margin:12px auto 0;background:none;border:0;color:rgba(255,255,255,.72);font-size:12.5px;cursor:pointer;text-decoration:underline}
+.pop .skip:hover{color:#fff}
 
 /* footer */
 footer{background:#0f1a22;color:#9fb0b8;margin-top:40px;padding:36px 0 30px;font-size:14px}

@@ -6,7 +6,7 @@
 <title>Ozalyn Erfahrungen &amp; Trustpilot: Wirkt es wirklich? ⭐ Test 2026</title>
 <meta name="description" content="Ozalyn Erfahrungen zum Abnehmen: Wirken die Kapseln? ⭐ Unsere ehrliche Auswertung 2026 – Ergebnisse, Trustpilot-Stimmen, Nebenwirkungen &amp; Vorher-Nachher-Behauptungen. »">
 <meta name="keywords" content="ozalyn erfahrungen, ozalyn kapseln erfahrungen, ozalyn bewertung, ozalyn test, ozalyn trustpilot, ozalyn fake oder echt, wirkt ozalyn, ozalyn erfahrungen vorher nachher, ozalyn nebenwirkungen, ozalyn zum abnehmen, rozalyn, ozalin, osanix erfahrungen">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/de/erfahrungen/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -98,7 +98,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Letzte Chance</span>
+    <span class="pop-badge">🚨 Letzte Chance</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn Kapseln">
     <h3>Ihr Rabatt von bis zu −54% ist noch aktiv</h3>
     <p>Sichern Sie sich die versandkostenfreie Ozalyn-Kur mit 30 Tage Geld-zurück-Garantie – solange das Angebot des offiziellen Shops läuft.</p>
@@ -125,7 +125,8 @@
   function show(){ if (shown || !pop || seen()) return; shown = true; try { sessionStorage.setItem("os_pop","1"); } catch(e){} pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
   function hide(){ if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll(){ var sd=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight; if (sd>0.55){ show(); window.removeEventListener("scroll", onScroll); } }, { passive: true });
   }
   document.addEventListener("click", function (e){ if (e.target.closest("[data-close]")) { e.preventDefault(); hide(); } });

@@ -6,7 +6,7 @@
 <title>Ozalyn ervaringen: Betrouwbaar of oplichting? ⭐ Eerlijke test 2026</title>
 <meta name="description" content="Is Ozalyn betrouwbaar of oplichting? ⭐ Onze eerlijke test 2026: echte ervaringen, ingrediënten, de werkelijke prijs &amp; waar u veilig koopt. Ook verkocht als Osanix. »">
 <meta name="keywords" content="ozalyn ervaringen, ozalyn oplichting, ozalyn betrouwbaar of niet, ozalyn kopen, ozalyn recensies, ozalyn pillen, ozalyn capsules, ozalyn werkt dat echt, ozalyn prijs, ozalyn ingrediënten, ozalin, rozalyn, osanix">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/nl/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -260,7 +260,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Laatste kans</span>
+    <span class="pop-badge">🚨 Laatste kans</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn capsules">
     <h3>Uw korting van tot −50% is nog actief</h3>
     <p>Pak de Ozalyn-kuur met gratis verzending en de niet-goed-geld-terug-optie van 30 dagen — zolang het aanbod van de officiële webshop loopt.</p>
@@ -302,7 +302,8 @@
   }
   function hide() { if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll() {
       var sd = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       if (sd > 0.55) { show(); window.removeEventListener("scroll", onScroll); }

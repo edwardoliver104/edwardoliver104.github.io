@@ -6,7 +6,7 @@
 <title>Ozalyn Reviews &amp; Trustpilot: Do They Really Work? ⭐ 2026 Test</title>
 <meta name="description" content="Ozalyn reviews for weight loss: do the capsules work? ⭐ Our honest 2026 breakdown of results, Trustpilot chatter, side effects and before-and-after claims. »">
 <meta name="keywords" content="ozalyn reviews, ozalyn weight loss reviews, ozalyn capsules reviews, ozalyn trustpilot, does ozalyn work, ozalyn reviews before and after, ozalyn side effects, is ozalyn genuine, rozalyn reviews, ozalin reviews, osanix reviews">
-<meta name="robots" content="noindex, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#22557a">
 <link rel="canonical" href="https://osanix.shop/reviews/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -98,7 +98,7 @@
 <div class="pop" id="exitpop" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="pop-ov"></div>
   <div class="pop-box">
-    <span class="pop-badge">⚠️ Last chance</span>
+    <span class="pop-badge">🚨 Last chance</span>
     <img src="/assets/img/pop.webp" width="600" height="700" alt="Ozalyn capsules">
     <h3>Your discount of up to −54% is still active</h3>
     <p>Grab the free-shipping Ozalyn course with the 30-day money-back option — while the official store's offer lasts.</p>
@@ -125,7 +125,8 @@
   function show(){ if (shown || !pop || seen()) return; shown = true; try { sessionStorage.setItem("os_pop","1"); } catch(e){} pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
   function hide(){ if (!pop) return; pop.classList.remove("show"); pop.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
   if (!seen()) {
-    setTimeout(show, 18000);
+    setTimeout(show, 15000);
+    document.addEventListener("mouseout", function (e) { if (e.clientY <= 0 && !e.relatedTarget) show(); });
     window.addEventListener("scroll", function onScroll(){ var sd=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight; if (sd>0.55){ show(); window.removeEventListener("scroll", onScroll); } }, { passive: true });
   }
   document.addEventListener("click", function (e){ if (e.target.closest("[data-close]")) { e.preventDefault(); hide(); } });

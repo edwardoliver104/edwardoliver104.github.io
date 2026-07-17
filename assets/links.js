@@ -12,12 +12,13 @@
      uk  offer 58   $80  -> try-ozalyn.com/oz/np/uk/  (was #59 hp $95)
      de  offer 56   $72  -> get-ozalyn.com/de/        (already low-price D2C)
      da  offer 60   $70  -> try-ozalyn.com/oz/np/da/  (was #61 hp $80)
-     nl  offer 255  $80  -> get-ozalyn.com  (NL & BE; only hp approved — ask Jennie for np)
+     nl  offer 335  $70  -> get-osanix.com/nl/  (OSANIX-branded, np; switched 2026-07-17 to match
+                            the osanix-branded search demand + lower price; was #255 Ozalyn hp $80)
    `org` = the organic sub1 tag used when there is no paid click-id present.
    ============================================================================ */
 window.OSANIX_LINKS = {
   uk: { base: "https://www.slmw4qtrk.com/ZZ2GX/3TJ7N7/", org: "osanixuk" },
   de: { base: "https://www.slmw4qtrk.com/ZZ2GX/3QQG71/", org: "osanixde" },
   da: { base: "https://www.slmw4qtrk.com/ZZ2GX/3ZB15F/", org: "osanixda" },
-  nl: { base: "https://www.slmw4qtrk.com/ZZ2GX/FM48MS/", org: "osanixnl" }
+  nl: { base: "https://www.slmw4qtrk.com/ZZ2GX/KL6XJD/", org: "osanixnl" }
 };

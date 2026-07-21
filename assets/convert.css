@@ -1,0 +1,83 @@
+/* convert.css — sticky offer bar + exit modal. Additive only; no existing selectors touched. */
+
+/* ---------- sticky offer bar ---------- */
+.osx-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:9998;
+  background:#141c2b; border-top:2px solid #ff5c8a;
+  transform:translateY(110%); transition:transform .28s ease;
+  box-shadow:0 -8px 28px rgba(0,0,0,.35);
+}
+.osx-bar.on{transform:translateY(0)}
+.osx-bar-in{
+  max-width:1020px; margin:0 auto; padding:11px 16px;
+  display:flex; align-items:center; gap:14px; justify-content:space-between;
+}
+.osx-bar-txt{display:flex; flex-direction:column; line-height:1.25; min-width:0}
+.osx-bar-txt strong{color:#fff; font-size:15px}
+.osx-bar-txt span{color:#9fb0c6; font-size:12.5px}
+.osx-bar-cta{
+  flex:0 0 auto; background:#ff5c8a; color:#fff; text-decoration:none;
+  font-weight:600; font-size:15px; padding:11px 20px; border-radius:8px;
+  transition:background .15s ease;
+}
+.osx-bar-cta:hover{background:#ff3d74}
+.osx-bar-cta:focus-visible{outline:3px solid #fff; outline-offset:2px}
+@media(max-width:560px){
+  .osx-bar-in{padding:9px 12px; gap:10px}
+  .osx-bar-txt span{display:none}
+  .osx-bar-cta{padding:10px 15px; font-size:14px}
+}
+
+/* ---------- exit modal ---------- */
+.osx-modal{position:fixed; inset:0; z-index:9999; display:none}
+.osx-modal.on{display:block}
+.osx-modal-bd{
+  position:absolute; inset:0; background:rgba(8,12,20,.62);
+  backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+}
+.osx-modal-card{
+  position:relative; max-width:440px; margin:12vh auto 0;
+  background:#fff; border-radius:14px; padding:28px 26px 22px;
+  text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.4);
+  animation:osxIn .22s ease-out;
+}
+@keyframes osxIn{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .osx-modal-card{animation:none}
+  .osx-bar{transition:none}
+}
+.osx-kick{
+  margin:0 0 8px; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:#d33a63; font-weight:600;
+}
+.osx-modal-card h2{margin:0 0 10px; font-size:23px; line-height:1.2; color:#16202f}
+.osx-b{margin:0 0 20px; font-size:15.5px; line-height:1.55; color:#4a5a70}
+.osx-go{
+  display:block; background:#ff5c8a; color:#fff; text-decoration:none;
+  font-weight:700; font-size:16.5px; padding:14px 18px; border-radius:9px;
+  transition:background .15s ease;
+}
+.osx-go:hover{background:#ff3d74}
+.osx-go:focus-visible{outline:3px solid #16202f; outline-offset:2px}
+.osx-no{
+  display:block; width:100%; margin:12px 0 0; background:none; border:0;
+  color:#8a97a8; font-size:13.5px; cursor:pointer; padding:6px; text-decoration:underline;
+}
+.osx-no:hover{color:#5a6879}
+.osx-no:focus-visible{outline:2px solid #d33a63; outline-offset:2px}
+.osx-g{margin:14px 0 0; font-size:12.5px; color:#8a97a8}
+@media(max-width:520px){
+  .osx-modal-card{margin:8vh 14px 0; padding:24px 20px 18px}
+  .osx-modal-card h2{font-size:21px}
+}
+
+/* ---------- inline recommendation block ---------- */
+.osx-rec{
+  border:1px solid #2b3a52; border-left:4px solid #ff5c8a;
+  background:#111a28; border-radius:10px; padding:20px 22px; margin:28px 0;
+}
+.osx-rec .osx-kick{color:#ff8fb0; text-align:left}
+.osx-rec h3{margin:0 0 8px; color:#fff; font-size:19px}
+.osx-rec p{margin:0 0 16px; color:#b9c6d6; font-size:15px; line-height:1.55}
+.osx-rec .osx-go{display:inline-block; padding:12px 22px; font-size:15.5px}
+.osx-rec .osx-recb{margin:0 0 16px;color:#b9c6d6;font-size:15px;line-height:1.55}

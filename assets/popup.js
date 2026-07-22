@@ -19,6 +19,25 @@
 
   var isOpen = false, shownOnce = false;
 
+  // --- countdown timer (session-scoped urgency; keeps ticking across re-opens) ---
+  var clock = document.getElementById("pop-clock");
+  var SPAN = 5 * 60 * 1000, tHandle = null;
+  function endTime() {
+    var e = +sessionStorage.getItem("os_pop_end") || 0;
+    if (!e) { e = Date.now() + SPAN; try { sessionStorage.setItem("os_pop_end", e); } catch (x) {} }
+    return e;
+  }
+  function tick() {
+    if (!clock) return;
+    var ms = Math.max(0, endTime() - Date.now());
+    var m = Math.floor(ms / 60000), sec = Math.floor((ms % 60000) / 1000);
+    clock.textContent = (m < 10 ? "0" : "") + m + ":" + (sec < 10 ? "0" : "") + sec;
+  }
+  function startTimer() {
+    if (tHandle || !clock) return;
+    tick(); tHandle = setInterval(tick, 1000);     // never auto-redirects; CTA stays live at 00:00
+  }
+
   function show() {
     if (isOpen) return;
     if (paid && shownOnce) return;                 // paid: only once
@@ -26,6 +45,7 @@
     pop.classList.add("show");
     pop.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    startTimer();
   }
   function hide() {
     isOpen = false;

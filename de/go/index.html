@@ -33,7 +33,7 @@
   var BASE = L.base, sub1 = L.org || "osanix";
   try {
     var t = JSON.parse(localStorage.getItem("os_track") || "{}");
-    var cid = t.gclid || t.fbclid || t.ttclid || t.msclkid;
+    var cid = t.gclid || t.gbraid || t.wbraid || t.fbclid || t.ttclid || t.msclkid;
     if (cid) sub1 = cid;                       // paid click -> gclid in sub1; else organic tag
   } catch (e) {}
   if (BASE) {

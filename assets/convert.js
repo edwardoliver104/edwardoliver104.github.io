@@ -43,6 +43,27 @@
           cta: "Voir l'offre du moment", g: "satisfait ou remboursé 30 jours · boutique officielle" }
   }[geo];
 
+
+  /* The product the reader will actually land on, per geo — verified against the
+     Everflow offer names, not assumed:
+       uk #59 Ozalyn [Quiz] · nl #255 Ozalyn [D2C] · da #61 Ozalyn [Quiz]
+       de #298 Ozem+ · se #315 Ozem+ · fr #313 Ozem+
+     Showing the right bottle at the decision point is the whole point; showing
+     an Ozalyn bottle to a DE/SE/FR reader who lands on an Oz+ checkout would just
+     move the mismatch rather than fix it. */
+  var DEST = { uk:"ozalyn", nl:"ozalyn", da:"ozalyn", de:"ozplus", se:"ozplus", fr:"ozplus" }[geo];
+  var DESTNAME = { ozalyn:"Ozalyn", ozplus:"Oz+" }[DEST];
+  var DESTIMG = { ozalyn:"/assets/img/rec-ozalyn.webp", ozplus:"/assets/img/rec-ozplus.webp" }[DEST];
+
+  var L = {
+    uk:{you:"You searched for", pick:"Our pick", why:"Why this one"},
+    nl:{you:"U zocht op",       pick:"Onze keuze", why:"Waarom deze"},
+    de:{you:"Ihre Suche",       pick:"Unsere Wahl", why:"Warum dieses"},
+    da:{you:"Du søgte efter",   pick:"Vores valg", why:"Hvorfor denne"},
+    se:{you:"Du sökte på",      pick:"Vårt val",   why:"Varför denna"},
+    fr:{you:"Vous cherchiez",   pick:"Notre choix", why:"Pourquoi celui-ci"}
+  }[geo];
+
   var KEY = "osx_cta";
   function converted() {
     try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; }
@@ -54,9 +75,23 @@
     d.className = "osx-rec";
     d.innerHTML =
       '<p class="osx-kick"></p>' +
+      '<div class="osx-two">' +
+        '<figure class="osx-p osx-from">' +
+          '<img src="/assets/img/rec-osanix.webp" width="346" height="659" alt="Osanix capsules" loading="lazy" decoding="async">' +
+          '<figcaption><span class="lab"></span><b>Osanix</b></figcaption>' +
+        '</figure>' +
+        '<span class="osx-arrow" aria-hidden="true">→</span>' +
+        '<figure class="osx-p osx-to">' +
+          '<img src="' + DESTIMG + '" alt="' + DESTNAME + '" loading="lazy" decoding="async">' +
+          '<figcaption><span class="lab pick"><span class="tick" aria-hidden="true">✓</span> </span><b></b></figcaption>' +
+        '</figure>' +
+      '</div>' +
       '<p class="osx-recb"></p>' +
       '<a class="osx-go" href="' + GO + '"></a>' +
       '<p class="osx-g"></p>';
+    d.querySelector(".osx-from .lab").textContent = L.you;
+    d.querySelector(".osx-to .lab").appendChild(document.createTextNode(L.pick));
+    d.querySelector(".osx-to b").textContent = DESTNAME;
     d.querySelector(".osx-kick").textContent = T.kick;
     d.querySelector(".osx-recb").textContent = T.body;
     var a = d.querySelector(".osx-go");
@@ -82,6 +117,12 @@
         if (secL && secL.parentNode) secL.parentNode.insertBefore(block(), secL.nextSibling);
       }
     }
+    // the exit popup is also a decision point — show the product they will land on
+    var pi = document.querySelector("#exitpop img");
+    if (pi) { pi.src = DESTIMG; pi.removeAttribute("width"); pi.removeAttribute("height");
+              pi.alt = DESTNAME; pi.style.height = "150px"; pi.style.width = "auto";
+              pi.style.objectFit = "contain"; }
+
     // stop the exit popup / sticky nagging someone who already went to the offer
     Array.prototype.forEach.call(
       document.querySelectorAll('a[href*="/go/"]'),

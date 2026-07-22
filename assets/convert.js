@@ -44,24 +44,41 @@
   }[geo];
 
 
-  /* The product the reader will actually land on, per geo — verified against the
-     Everflow offer names, not assumed:
-       uk #59 Ozalyn [Quiz] · nl #255 Ozalyn [D2C] · da #61 Ozalyn [Quiz]
-       de #298 Ozem+ · se #315 Ozem+ · fr #313 Ozem+
-     Showing the right bottle at the decision point is the whole point; showing
-     an Ozalyn bottle to a DE/SE/FR reader who lands on an Oz+ checkout would just
-     move the mismatch rather than fix it. */
-  var DEST = { uk:"ozalyn", nl:"ozalyn", da:"ozalyn", de:"ozplus", se:"ozplus", fr:"ozplus" }[geo];
-  var DESTNAME = { ozalyn:"Ozalyn", ozplus:"Oz+" }[DEST];
-  var DESTIMG = { ozalyn:"/assets/img/rec-ozalyn.webp", ozplus:"/assets/img/rec-ozplus.webp" }[DEST];
+  /* The reader's real choice is between the two products we can actually send them
+     to — Ozalyn and Oz+ — so the card shows both, each clickable, with a tick on the
+     one we rate highest in that market. `pick` and both destinations come from
+     links.js; the offer hashes there were read back from the Everflow offer names. */
+  /* Which product we recommend per geo. Mirrors `pick` in links.js but is duplicated
+     here ON PURPOSE: links.js is loaded only by /go/, so the affiliate URLs never
+     reach a content page's DOM. This map carries no URLs, so masking stays intact.
+     Keep it in sync with links.js `pick`. */
+  var PICK = { uk:"ozalyn", nl:"ozalyn", da:"ozalyn",
+               de:"ozplus", se:"ozplus", fr:"ozplus" }[geo] || "ozalyn";
+
+  var PROD = {
+    ozalyn: { name: "Ozalyn", img: "/assets/img/rec-ozalyn.webp",
+              note: { uk:"Botanical formula — Garcinia, guarana and B-vitamins, in a capsule.",
+                      nl:"Plantaardige formule — garcinia, guarana en B-vitaminen, in een capsule.",
+                      de:"Pflanzliche Formel — Garcinia, Guarana und B-Vitamine, als Kapsel.",
+                      da:"Plantebaseret formel — garcinia, guarana og B-vitaminer, som kapsel.",
+                      se:"Växtbaserad formel — garcinia, guarana och B-vitaminer, som kapsel.",
+                      fr:"Formule végétale — garcinia, guarana et vitamines B, en gélule." }[geo] },
+    ozplus: { name: "Oz+", img: "/assets/img/rec-ozplus.webp",
+              note: { uk:"Seven-component duo capsule, 312 mg daily dose.",
+                      nl:"Duo-capsule met zeven componenten, 312 mg dagdosis.",
+                      de:"Duo-Kapsel mit sieben Komponenten, 312 mg Tagesdosis.",
+                      da:"Duo-kapsel med syv komponenter, 312 mg daglig dosis.",
+                      se:"Duokapsel med sju komponenter, 312 mg dagsdos.",
+                      fr:"Gélule duo à sept composants, dose quotidienne de 312 mg." }[geo] }
+  };
 
   var L = {
-    uk:{you:"You searched for", pick:"Our pick", why:"Why this one"},
-    nl:{you:"U zocht op",       pick:"Onze keuze", why:"Waarom deze"},
-    de:{you:"Ihre Suche",       pick:"Unsere Wahl", why:"Warum dieses"},
-    da:{you:"Du søgte efter",   pick:"Vores valg", why:"Hvorfor denne"},
-    se:{you:"Du sökte på",      pick:"Vårt val",   why:"Varför denna"},
-    fr:{you:"Vous cherchiez",   pick:"Notre choix", why:"Pourquoi celui-ci"}
+    uk:{ pick:"Our pick", alt:"Also good", head:"Which one should you pick?" },
+    nl:{ pick:"Onze keuze", alt:"Ook goed", head:"Welke moet u kiezen?" },
+    de:{ pick:"Unsere Wahl", alt:"Auch gut", head:"Welches sollten Sie wählen?" },
+    da:{ pick:"Vores valg", alt:"Også god", head:"Hvilken skal du vælge?" },
+    se:{ pick:"Vårt val", alt:"Också bra", head:"Vilken ska du välja?" },
+    fr:{ pick:"Notre choix", alt:"Bon aussi", head:"Lequel choisir\u00a0?" }
   }[geo];
 
   var KEY = "osx_cta";
@@ -71,27 +88,26 @@
   function mark() { try { sessionStorage.setItem(KEY, "1"); } catch (e) {} }
 
   function block() {
+    function card(key) {
+      var p = PROD[key], isPick = (key === PICK);
+      return '<a class="osx-p' + (isPick ? ' osx-win' : '') + '" href="' + GO + '?p=' + key + '">' +
+               '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy" decoding="async">' +
+               '<span class="lab">' + (isPick ? '<span class="tick" aria-hidden="true">\u2713</span> ' + L.pick : L.alt) + '</span>' +
+               '<b>' + p.name + '</b>' +
+               '<span class="osx-note">' + p.note + '</span>' +
+             '</a>';
+    }
+    var order = PICK === "ozplus" ? ["ozplus", "ozalyn"] : ["ozalyn", "ozplus"];
+
     var d = document.createElement("div");
     d.className = "osx-rec";
     d.innerHTML =
       '<p class="osx-kick"></p>' +
-      '<div class="osx-two">' +
-        '<figure class="osx-p osx-from">' +
-          '<img src="/assets/img/rec-osanix.webp" width="346" height="659" alt="Osanix capsules" loading="lazy" decoding="async">' +
-          '<figcaption><span class="lab"></span><b>Osanix</b></figcaption>' +
-        '</figure>' +
-        '<span class="osx-arrow" aria-hidden="true">→</span>' +
-        '<figure class="osx-p osx-to">' +
-          '<img src="' + DESTIMG + '" alt="' + DESTNAME + '" loading="lazy" decoding="async">' +
-          '<figcaption><span class="lab pick"><span class="tick" aria-hidden="true">✓</span> </span><b></b></figcaption>' +
-        '</figure>' +
-      '</div>' +
+      '<p class="osx-head">' + L.head + '</p>' +
+      '<div class="osx-two">' + card(order[0]) + card(order[1]) + '</div>' +
       '<p class="osx-recb"></p>' +
       '<a class="osx-go" href="' + GO + '"></a>' +
       '<p class="osx-g"></p>';
-    d.querySelector(".osx-from .lab").textContent = L.you;
-    d.querySelector(".osx-to .lab").appendChild(document.createTextNode(L.pick));
-    d.querySelector(".osx-to b").textContent = DESTNAME;
     d.querySelector(".osx-kick").textContent = T.kick;
     d.querySelector(".osx-recb").textContent = T.body;
     var a = d.querySelector(".osx-go");
@@ -119,8 +135,8 @@
     }
     // the exit popup is also a decision point — show the product they will land on
     var pi = document.querySelector("#exitpop img");
-    if (pi) { pi.src = DESTIMG; pi.removeAttribute("width"); pi.removeAttribute("height");
-              pi.alt = DESTNAME; pi.style.height = "150px"; pi.style.width = "auto";
+    if (pi) { pi.src = PROD[PICK].img; pi.removeAttribute("width"); pi.removeAttribute("height");
+              pi.alt = PROD[PICK].name; pi.style.height = "150px"; pi.style.width = "auto";
               pi.style.objectFit = "contain"; }
 
     // stop the exit popup / sticky nagging someone who already went to the offer

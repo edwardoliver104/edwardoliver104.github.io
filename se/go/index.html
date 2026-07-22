@@ -29,12 +29,16 @@
 <script>
 (function () {
   var GEO = "se";
-  var L = (window.OSANIX_LINKS || {})[GEO] || {};
+  var G = (window.OSANIX_LINKS || {})[GEO] || {};
+  // ?p=ozalyn | ?p=ozplus chooses the product; anything else falls back to our pick
+  var p = (location.search.match(/[?&]p=([a-z]+)/) || [])[1];
+  if (!G[p]) p = G.pick;
+  var L = G[p] || {};
   var BASE = L.base, sub1 = L.org || "osanix";
   try {
     var t = JSON.parse(localStorage.getItem("os_track") || "{}");
     var cid = t.gclid || t.gbraid || t.wbraid || t.fbclid || t.ttclid || t.msclkid;
-    if (cid) sub1 = cid;                       // paid click -> gclid in sub1; else organic tag
+    if (cid) sub1 = cid;                       // paid click -> click-id in sub1; else organic tag
   } catch (e) {}
   if (BASE) {
     var url = BASE + (BASE.indexOf("?") > -1 ? "&" : "?") + "sub1=" + encodeURIComponent(sub1);

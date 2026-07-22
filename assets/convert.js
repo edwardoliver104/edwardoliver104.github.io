@@ -92,3 +92,52 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
+/* ---- design system v2: scroll reveal --------------------------------------
+   The `js` class is what arms the CSS; without it .reveal stays fully visible,
+   so a JS failure can never hide content from a reader or from Googlebot.
+   Anything at or above the fold reveals immediately, and anything the reader
+   has already scrolled past is revealed too — a jump-scroll or an #anchor
+   landing must never leave a blank section behind. */
+(function () {
+  "use strict";
+  var d = document, root = d.documentElement;
+  root.className += (root.className ? " " : "") + "js";
+
+  function arm() {
+    var els = [].slice.call(d.querySelectorAll(".reveal"));
+    if (!els.length) return;
+    function showAll() { els.forEach(function (el) { el.classList.add("in"); }); }
+    if (!("IntersectionObserver" in window)) { showAll(); return; }
+
+    // reveal anything already in view or already scrolled past
+    function sweep() {
+      var vh = window.innerHeight || d.documentElement.clientHeight;
+      els.forEach(function (el) {
+        if (el.classList.contains("in")) return;
+        var t = el.getBoundingClientRect().top;
+        if (t < vh - 30) el.classList.add("in");
+      });
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -30px 0px", threshold: 0 });
+    els.forEach(function (el) { io.observe(el); });
+
+    sweep();
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { sweep(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener("resize", sweep, { passive: true });
+    // last-resort safety net: nothing stays hidden past 4s
+    setTimeout(showAll, 4000);
+  }
+  if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", arm);
+  else arm();
+})();

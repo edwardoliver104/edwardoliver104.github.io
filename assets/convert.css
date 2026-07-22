@@ -81,3 +81,12 @@
 .osx-rec p{margin:0 0 16px; color:#b9c6d6; font-size:15px; line-height:1.55}
 .osx-rec .osx-go{display:inline-block; padding:12px 22px; font-size:15.5px}
 .osx-rec .osx-recb{margin:0 0 16px;color:#b9c6d6;font-size:15px;line-height:1.55}
+
+/* Guard: long legal-link words (Integritetspolicy, Haftungsausschluss) overflowing
+   the footer on narrow screens — fixes all long-word locales (DE/SE/NL/DK). */
+footer a, .main a { overflow-wrap:anywhere; word-break:break-word; }
+@media(max-width:560px){
+  footer .cols{flex-direction:column; gap:14px}
+  .cmp-wrap, .packs { max-width:100%; overflow-x:auto; }
+}
+html, body { overflow-x:hidden; }

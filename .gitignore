@@ -5,3 +5,4 @@ backlinks-log.json
 monetize/
 assets/*.map
 pricechk/
+.qa/

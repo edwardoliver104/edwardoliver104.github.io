@@ -7,5 +7,7 @@ window.OSANIX_LINKS = {
   uk: { base: "https://www.slmw4qtrk.com/ZZ2GX/3WX4DS/", org: "osanixuk" },
   de: { base: "https://www.slmw4qtrk.com/ZZ2GX/HQS89X/", org: "osanixde" },
   da: { base: "https://www.slmw4qtrk.com/ZZ2GX/41NTW2/", org: "osanixda" },
-  nl: { base: "https://www.slmw4qtrk.com/ZZ2GX/FM48MS/", org: "osanixnl" }
+  nl: { base: "https://www.slmw4qtrk.com/ZZ2GX/FM48MS/", org: "osanixnl" },
+  se: { base: "https://www.slmw4qtrk.com/ZZ2GX/JLF8S8/", org: "osanixse" },
+  fr: { base: "https://www.slmw4qtrk.com/ZZ2GX/JHMHC2/", org: "osanixfr" }
 };

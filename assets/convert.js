@@ -14,9 +14,12 @@
   if (geo.indexOf("nl") === 0) geo = "nl";
   else if (geo.indexOf("de") === 0) geo = "de";
   else if (geo.indexOf("da") === 0) geo = "da";
+  else if (geo.indexOf("sv") === 0) geo = "se";   // Swedish lang tag "sv" -> /se/
+  else if (geo.indexOf("fr") === 0) geo = "fr";
   else geo = "uk";
 
-  var GO = { uk: "/go/", de: "/de/go/", da: "/da/go/", nl: "/nl/go/" }[geo];
+  var GO = { uk: "/go/", de: "/de/go/", da: "/da/go/", nl: "/nl/go/",
+             se: "/se/go/", fr: "/fr/go/" }[geo];
   if (!GO) return;
 
   var T = {
@@ -31,7 +34,13 @@
           cta: "Aktuelles Angebot ansehen", g: "30 Tage Geld-zurück · offizieller Shop" },
     da: { kick: "Vores anbefaling",
           body: "Vi har set på sammensætningen, prisen og hvad sælgeren rent faktisk oplyser. For pengene er dette den mulighed, vi vurderer højest lige nu.",
-          cta: "Se det aktuelle tilbud", g: "30 dages pengene-tilbage · officiel butik" }
+          cta: "Se det aktuelle tilbud", g: "30 dages pengene-tilbage · officiel butik" },
+    se: { kick: "Vår rekommendation",
+          body: "Vi har tittat på sammansättningen, priset och vad säljaren faktiskt uppger. För pengarna är detta det alternativ vi bedömer högst just nu.",
+          cta: "Se det aktuella erbjudandet", g: "30 dagars pengarna-tillbaka · officiell butik" },
+    fr: { kick: "Notre recommandation",
+          body: "Nous avons examiné la composition, le prix et ce que le vendeur indique réellement. Pour ce budget, c'est l'option que nous jugeons la meilleure en ce moment.",
+          cta: "Voir l'offre du moment", g: "satisfait ou remboursé 30 jours · boutique officielle" }
   }[geo];
 
   var KEY = "osx_cta";

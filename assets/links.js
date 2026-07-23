@@ -4,14 +4,14 @@
    ALL SIX GEOS NOW RUN OSANIX: uk #371, nl #335, se #334, de #372, da #373, fr #374
    (Jennie sent DE/DK/FR later the same day; all three hashes were checked back against
    the Everflow offer names and resolved live per geo to get-osanix.com).
-   Ozem+ is kept as the second option everywhere.
+   2026-07-23 (later): Ozem+ REMOVED as an alternate — Bob wants DIRECT OSANIX ONLY,
+   so no route can send a visitor anywhere else. Each geo has exactly one destination.
 
    ⚠ TAG MEANING CHANGED 2026-07-23 for de/da/fr: `osanixde|da|fr` used to point at Ozem+
-   and now points at OSANIX; Ozem+ moved to the `2` suffix. Reporting before that date
-   reads the other way round. uk/nl/se were already Osanix on the plain tag.
+   and now points at OSANIX. Reporting before that date reads the other way round.
+   uk/nl/se were already Osanix on the plain tag. The `…2` Ozem+ tags are retired.
 
    `pick` = the recommended destination and what a bare /go/ resolves to.
-   Other destinations are reached with /go/?p=<key>; an unknown key falls back to pick.
    `org`  = organic sub1 tag. The pick keeps that geo's ORIGINAL tag so historical
    reporting still lines up; a second destination gets a `2` suffix so the two stay
    separable in one Everflow report.
@@ -19,23 +19,17 @@
    Never transcribe a hash by hand — read it back from the offer's tracking_url. */
 window.OSANIX_LINKS = {
   uk: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MD6Q28/", org: "osanixuk"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/HLML44/", org: "osanixuk2" } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MD6Q28/", org: "osanixuk"  } },
   nl: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KL6XJD/", org: "osanixnl"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/JMS5JT/", org: "osanixnl2" } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KL6XJD/", org: "osanixnl"  } },
   se: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KJS2RR/", org: "osanixse"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/JLF8S8/", org: "osanixse2" } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KJS2RR/", org: "osanixse"  } },
   de: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MFKLQT/", org: "osanixde"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/HQS89X/", org: "osanixde2" } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MFKLQT/", org: "osanixde"  } },
   da: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MGZHHG/", org: "osanixda"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/HN2GSP/", org: "osanixda2" } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MGZHHG/", org: "osanixda"  } },
   fr: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MJCD83/", org: "osanixfr"  },
-        ozplus: { base: "https://www.slmw4qtrk.com/ZZ2GX/JHMHC2/", org: "osanixfr2" } }
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MJCD83/", org: "osanixfr"  }, }
 };
 
 /* ---------------------------------------------------------------------------

@@ -44,20 +44,18 @@
   }[geo];
 
 
-  /* The reader's real choice is between the two products we can actually send them
-     to — Ozalyn and Oz+ — so the card shows both, each clickable, with a tick on the
-     one we rate highest in that market. `pick` and both destinations come from
-     links.js; the offer hashes there were read back from the Everflow offer names. */
+  /* DIRECT OSANIX ONLY. There is exactly one destination per geo and no route that
+     can send a visitor to another advertiser. The card shows that product with the
+     recommendation tick. Destinations live in links.js; the offer hashes there were
+     read back from the Everflow offer names, never transcribed. */
   /* Which products each geo can actually reach, and which we recommend.
      Mirrors links.js ON PURPOSE — links.js is loaded only by /go/, so affiliate URLs
      never reach a content page's DOM. This map carries no URLs, so masking stays intact.
      KEEP IN SYNC WITH links.js.
-     2026-07-23: Ozalyn is gone (offline). Osanix now covers ALL SIX geos
-     (uk #371, nl #335, se #334, de #372, da #373, fr #374), so every geo shows the
-     full two-product chooser again with Osanix as the pick. */
-  var OPTS = { uk:["osanix","ozplus"], nl:["osanix","ozplus"], se:["osanix","ozplus"],
-               de:["osanix","ozplus"], da:["osanix","ozplus"], fr:["osanix","ozplus"] }[geo]
-             || ["osanix","ozplus"];
+     2026-07-23: Ozalyn is gone and Ozem+ has been removed as an alternate — Osanix now
+     covers ALL SIX geos (uk #371, nl #335, se #334, de #372, da #373, fr #374) and is the
+     ONLY destination. The card shows the single recommended product, not a chooser. */
+  var OPTS = ["osanix"];   // DIRECT OSANIX ONLY — no route may send a visitor elsewhere
   var PICK = OPTS[0];
 
   var PROD = {
@@ -68,13 +66,6 @@
                       da:"Grøn te, cayenne, ingefær og L-carnitin, som kapsel.",
                       se:"Grönt te, cayenne, ingefära och L-karnitin, som kapsel.",
                       fr:"Thé vert, cayenne, gingembre et L-carnitine, en gélule." }[geo] },
-    ozplus: { name: "Oz+", img: "/assets/img/rec-ozplus.webp",
-              note: { uk:"Seven-component duo capsule, 312 mg daily dose.",
-                      nl:"Duo-capsule met zeven componenten, 312 mg dagdosis.",
-                      de:"Duo-Kapsel mit sieben Komponenten, 312 mg Tagesdosis.",
-                      da:"Duo-kapsel med syv komponenter, 312 mg daglig dosis.",
-                      se:"Duokapsel med sju komponenter, 312 mg dagsdos.",
-                      fr:"Gélule duo à sept composants, dose quotidienne de 312 mg." }[geo] }
   };
 
   var L = {

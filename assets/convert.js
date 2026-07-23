@@ -52,10 +52,12 @@
      Mirrors links.js ON PURPOSE — links.js is loaded only by /go/, so affiliate URLs
      never reach a content page's DOM. This map carries no URLs, so masking stays intact.
      KEEP IN SYNC WITH links.js.
-     2026-07-23: Ozalyn is gone (offline). Osanix exists only in UK/NL/SE — #362/#335/#334
-     — so DE/DK/FR run Ozem+ alone and render a single card. */
+     2026-07-23: Ozalyn is gone (offline). Osanix now covers ALL SIX geos
+     (uk #371, nl #335, se #334, de #372, da #373, fr #374), so every geo shows the
+     full two-product chooser again with Osanix as the pick. */
   var OPTS = { uk:["osanix","ozplus"], nl:["osanix","ozplus"], se:["osanix","ozplus"],
-               de:["ozplus"], da:["ozplus"], fr:["ozplus"] }[geo] || ["ozplus"];
+               de:["osanix","ozplus"], da:["osanix","ozplus"], fr:["osanix","ozplus"] }[geo]
+             || ["osanix","ozplus"];
   var PICK = OPTS[0];
 
   var PROD = {

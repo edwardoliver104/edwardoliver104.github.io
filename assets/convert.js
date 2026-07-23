@@ -48,21 +48,24 @@
      to — Ozalyn and Oz+ — so the card shows both, each clickable, with a tick on the
      one we rate highest in that market. `pick` and both destinations come from
      links.js; the offer hashes there were read back from the Everflow offer names. */
-  /* Which product we recommend per geo. Mirrors `pick` in links.js but is duplicated
-     here ON PURPOSE: links.js is loaded only by /go/, so the affiliate URLs never
-     reach a content page's DOM. This map carries no URLs, so masking stays intact.
-     Keep it in sync with links.js `pick`. */
-  var PICK = { uk:"ozalyn", nl:"ozalyn", da:"ozalyn",
-               de:"ozplus", se:"ozplus", fr:"ozplus" }[geo] || "ozalyn";
+  /* Which products each geo can actually reach, and which we recommend.
+     Mirrors links.js ON PURPOSE — links.js is loaded only by /go/, so affiliate URLs
+     never reach a content page's DOM. This map carries no URLs, so masking stays intact.
+     KEEP IN SYNC WITH links.js.
+     2026-07-23: Ozalyn is gone (offline). Osanix exists only in UK/NL/SE — #362/#335/#334
+     — so DE/DK/FR run Ozem+ alone and render a single card. */
+  var OPTS = { uk:["osanix","ozplus"], nl:["osanix","ozplus"], se:["osanix","ozplus"],
+               de:["ozplus"], da:["ozplus"], fr:["ozplus"] }[geo] || ["ozplus"];
+  var PICK = OPTS[0];
 
   var PROD = {
-    ozalyn: { name: "Ozalyn", img: "/assets/img/rec-ozalyn.webp",
-              note: { uk:"Botanical formula — Garcinia, guarana and B-vitamins, in a capsule.",
-                      nl:"Plantaardige formule — garcinia, guarana en B-vitaminen, in een capsule.",
-                      de:"Pflanzliche Formel — Garcinia, Guarana und B-Vitamine, als Kapsel.",
-                      da:"Plantebaseret formel — garcinia, guarana og B-vitaminer, som kapsel.",
-                      se:"Växtbaserad formel — garcinia, guarana och B-vitaminer, som kapsel.",
-                      fr:"Formule végétale — garcinia, guarana et vitamines B, en gélule." }[geo] },
+    osanix: { name: "Osanix", img: "/assets/img/rec-osanix.webp",
+              note: { uk:"Green tea, cayenne, ginger and L-carnitine, in a capsule.",
+                      nl:"Groene thee, cayenne, gember en L-carnitine, in een capsule.",
+                      de:"Grüntee, Cayenne, Ingwer und L-Carnitin, als Kapsel.",
+                      da:"Grøn te, cayenne, ingefær og L-carnitin, som kapsel.",
+                      se:"Grönt te, cayenne, ingefära och L-karnitin, som kapsel.",
+                      fr:"Thé vert, cayenne, gingembre et L-carnitine, en gélule." }[geo] },
     ozplus: { name: "Oz+", img: "/assets/img/rec-ozplus.webp",
               note: { uk:"Seven-component duo capsule, 312 mg daily dose.",
                       nl:"Duo-capsule met zeven componenten, 312 mg dagdosis.",
@@ -73,12 +76,12 @@
   };
 
   var L = {
-    uk:{ pick:"Our pick", alt:"Also good", head:"Which one should you pick?" },
-    nl:{ pick:"Onze keuze", alt:"Ook goed", head:"Welke moet u kiezen?" },
-    de:{ pick:"Unsere Wahl", alt:"Auch gut", head:"Welches sollten Sie wählen?" },
-    da:{ pick:"Vores valg", alt:"Også god", head:"Hvilken skal du vælge?" },
-    se:{ pick:"Vårt val", alt:"Också bra", head:"Vilken ska du välja?" },
-    fr:{ pick:"Notre choix", alt:"Bon aussi", head:"Lequel choisir\u00a0?" }
+    uk:{ pick:"Our pick", alt:"Also good", head:"Which one should you pick?", one:"What we recommend" },
+    nl:{ pick:"Onze keuze", alt:"Ook goed", head:"Welke moet u kiezen?", one:"Onze aanbeveling" },
+    de:{ pick:"Unsere Wahl", alt:"Auch gut", head:"Welches sollten Sie wählen?", one:"Unsere Empfehlung" },
+    da:{ pick:"Vores valg", alt:"Også god", head:"Hvilken skal du vælge?", one:"Vores anbefaling" },
+    se:{ pick:"Vårt val", alt:"Också bra", head:"Vilken ska du välja?", one:"Vår rekommendation" },
+    fr:{ pick:"Notre choix", alt:"Bon aussi", head:"Lequel choisir\u00a0?", one:"Notre recommandation" }
   }[geo];
 
   var KEY = "osx_cta";
@@ -90,23 +93,24 @@
   function block() {
     function card(key) {
       var p = PROD[key], isPick = (key === PICK);
-      return '<a class="osx-p' + (isPick ? ' osx-win' : '') + '" href="' + GO + '?p=' + key + '">' +
+      return '<a class="osx-p' + (isPick ? ' osx-win' : '') + '" referrerpolicy="no-referrer" href="' + GO + '?p=' + key + '">' +
                '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy" decoding="async">' +
                '<span class="lab">' + (isPick ? '<span class="tick" aria-hidden="true">\u2713</span> ' + L.pick : L.alt) + '</span>' +
                '<b>' + p.name + '</b>' +
                '<span class="osx-note">' + p.note + '</span>' +
              '</a>';
     }
-    var order = PICK === "ozplus" ? ["ozplus", "ozalyn"] : ["ozalyn", "ozplus"];
-
+    var one = OPTS.length === 1;
     var d = document.createElement("div");
     d.className = "osx-rec";
     d.innerHTML =
       '<p class="osx-kick"></p>' +
-      '<p class="osx-head">' + L.head + '</p>' +
-      '<div class="osx-two">' + card(order[0]) + card(order[1]) + '</div>' +
+      '<p class="osx-head">' + (one ? L.one : L.head) + '</p>' +
+      '<div class="osx-two' + (one ? ' osx-solo' : '') + '">' +
+        OPTS.map(card).join("") +
+      '</div>' +
       '<p class="osx-recb"></p>' +
-      '<a class="osx-go" href="' + GO + '"></a>' +
+      '<a class="osx-go" referrerpolicy="no-referrer" href="' + GO + '"></a>' +
       '<p class="osx-g"></p>';
     d.querySelector(".osx-kick").textContent = T.kick;
     d.querySelector(".osx-recb").textContent = T.body;

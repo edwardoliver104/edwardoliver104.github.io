@@ -273,3 +273,5 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.cta:focus-visible{
   .osx-p b{font-size:15px}
   .osx-p .osx-note{font-size:11.5px}
 }
+/* single-option geo (no Osanix offer there): one card, not a stretched half-grid */
+.osx-two.osx-solo{grid-template-columns:minmax(0,320px)}

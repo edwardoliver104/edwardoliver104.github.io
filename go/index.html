@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#22557a">
 <meta name="robots" content="noindex, nofollow">
+<!-- the offer domain must receive an EMPTY Referer -->
+<meta name="referrer" content="no-referrer">
 <title>Redirecting …</title>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -40,6 +42,7 @@
     var cid = t.gclid || t.gbraid || t.wbraid || t.fbclid || t.ttclid || t.msclkid;
     if (cid) sub1 = cid;                       // paid click -> click-id in sub1; else organic tag
   } catch (e) {}
+  try { document.referrerPolicy = "no-referrer"; } catch (e) {}
   if (BASE) {
     var url = BASE + (BASE.indexOf("?") > -1 ? "&" : "?") + "sub1=" + encodeURIComponent(sub1);
     setTimeout(function () { window.location.replace(url); }, 250);  // no back-button entry

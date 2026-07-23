@@ -45,6 +45,10 @@
   try { document.referrerPolicy = "no-referrer"; } catch (e) {}
   if (BASE) {
     var url = BASE + (BASE.indexOf("?") > -1 ? "&" : "?") + "sub1=" + encodeURIComponent(sub1);
+    // If a referrer hop is configured, go through it so the offer sees that domain
+    // instead of an empty header. No hop -> straight through with no referrer at all.
+    var hop = window.OSANIX_HOP;
+    if (hop) url = hop + (hop.indexOf("?") > -1 ? "&" : "?") + "u=" + encodeURIComponent(url);
     setTimeout(function () { window.location.replace(url); }, 250);  // no back-button entry
   }
 })();

@@ -6,3 +6,4 @@ monetize/
 assets/*.map
 pricechk/
 .qa/
+tools/

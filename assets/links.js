@@ -2,6 +2,11 @@
 
    2026-07-23 — OZALYN OFFLINE (Jennie). Every Ozalyn destination is removed.
    ALL SIX GEOS NOW RUN OSANIX: uk #371, nl #335, se #334, de #372, da #373, fr #374
+   2026-09-06 — NL/BE: Everflow offer 335 (KL6XJD, $70) REPLACED by offer 458 (RP1L33, $72,
+   country-targeted NL+BE, "Normal Prising - SS - Osanix[DTC]- Weight loss - NL/BE - CPA").
+   Traced from NL and BE residential exits: RP1L33 -> get-osanix.com/nl/checkouts/checkout,
+   Osanix-branded, np ladder 54,95 / 79,90 / 109,95. Old KL6XJD now 302s into RP1L33 itself.
+   Tag `osanixnl` kept so reporting stays continuous.
    (Jennie sent DE/DK/FR later the same day; all three hashes were checked back against
    the Everflow offer names and resolved live per geo to get-osanix.com).
    2026-07-23 (later): Ozem+ REMOVED as an alternate — Bob wants DIRECT OSANIX ONLY,
@@ -21,7 +26,7 @@ window.OSANIX_LINKS = {
   uk: { pick: "osanix",
         osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/MD6Q28/", org: "osanixuk"  } },
   nl: { pick: "osanix",
-        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KL6XJD/", org: "osanixnl"  } },
+        osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/RP1L33/", org: "osanixnl"  } },
   se: { pick: "osanix",
         osanix: { base: "https://www.slmw4qtrk.com/ZZ2GX/KJS2RR/", org: "osanixse"  } },
   de: { pick: "osanix",

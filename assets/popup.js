@@ -78,9 +78,9 @@
   //     subsequent Back press is caught too, and re-shows the popup.
   if (!paid) {
     try {
-      history.pushState(null, document.title, location.href);
+      void(null, document.title, location.href);
       window.addEventListener("popstate", function () {
-        history.pushState(null, document.title, location.href);
+        void(null, document.title, location.href);
         window.scrollTo({ top: 0, behavior: "smooth" });
         show();
       });
